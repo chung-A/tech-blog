@@ -202,23 +202,6 @@ DBから読むデータであれば、日付やID範囲で処理対象を分け�
 私が経験したケースでは、ファイル読み込みそのものは順次進め、読み込んだデータをchunk単位で変換し、Topicへ流す構成にしました。
 その後、DB反映は複数のConsumer側で処理します。
 
-```mermaid
-flowchart TB
-  F["Large File"] --> R["File Reader"]
-  R --> C["Chunk変換"]
-  C --> Q["Topic / Queue"]
-  Q --> P0["Partition 0"]
-  Q --> P1["Partition 1"]
-  Q --> P2["Partition 2"]
-  P0 --> W0["Consumer Worker"]
-  P1 --> W1["Consumer Worker"]
-  P2 --> W2["Consumer Worker"]
-  W0 --> B["Batch Write"]
-  W1 --> B
-  W2 --> B
-  B --> DB["DB"]
-```
-
 この構成のポイントは、単にMQを使うことではありません。
 ファイルを読む速度と、DBに書く速度を分けて考えられることです。
 
