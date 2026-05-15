@@ -109,7 +109,7 @@ chunk単位でまとめて処理したり、bulk updateを使ったりするこ�
 
 例えば、アプリのメイン画面を表示するAPIが遅いケースを考えてみます。
 
-<img width="1491" height="1055" alt="ChatGPT Image 2026년 5월 16일 AM 01_58_06" src="https://github.com/user-attachments/assets/2d1f79ba-31d8-4465-aed5-dfac7a2aa275" />
+<img width="1492" height="1054" alt="ChatGPT Image 2026년 5월 16일 AM 02_01_27" src="https://github.com/user-attachments/assets/7246d1cf-ebb4-4330-8961-f8c863cb7bfb" />
 
 メイン画面では、お知らせ、バナー、イベント情報、ユーザーごとの状態、最近の利用履歴、推薦データなど、複数の情報をまとめて返すことがあります。
 
