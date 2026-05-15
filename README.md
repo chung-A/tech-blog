@@ -60,23 +60,8 @@
 2つ目は、後から処理してもよい書き込みです。
 ログ、通知、外部システム連携、後続の集計などは、要件によっては後ろの処理に回せる場合があります。
 
-この場合は、キューや非同期処理、バッチワーカーに処理を渡すことで、待ち時間と実際に重い処理を行う時間を分けることができます。
+この場合は、キューや非同期処理、バッチワーカーに処理を渡すことで、待ち時間と実際に重い処理を行う時間を分けることができます。<img width="1491" height="1055" alt="ChatGPT Image 2026년 5월 16일 AM 01_39_03" src="https://github.com/user-attachments/assets/5870a7b3-9010-4553-8770-e99cba6034de" />
 
-```mermaid
-sequenceDiagram
-  participant U as User
-  participant A as App
-  participant Q as Queue
-  participant W as Worker
-  participant E as External/DB
-
-  U->>A: Request
-  A->>A: Save required data
-  A->>Q: Register follow-up task
-  A-->>U: Accepted response
-  W->>Q: Consume task
-  W->>E: Heavy processing
-```
 
 また、DB更新についても、1件ずつ処理するとネットワーク往復やトランザクションのコストが積み重なります。
 chunk単位でまとめて処理したり、bulk updateを使ったりすることで、書き込みの負荷を下げられる場合があります。
